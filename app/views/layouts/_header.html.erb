@@ -27,7 +27,9 @@
 					</ul>
 				</span>
 			<% else %>
-				<%= link_to "Log in", sessions_path %>				
+				<% if !@home %>
+					<%= link_to "Log in", sessions_path %>
+				<%end%>				
 			<% end %>
 		</div>
 	</div>
