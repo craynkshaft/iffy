@@ -1,9 +1,9 @@
 <style type="text/css">
 	.bg {
-	width: 100%;
+	/*width: 100%;
 	background-image: url(<%= @mood.photo %>);
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 	background-color: #000;
 }
 
@@ -15,8 +15,8 @@
   background-image: url(<%= @mood.photo %>);
   background-size: cover;
   width: 100%;
-  height: 800px;
-  
+  height: 900px;
+  top: -6px;
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
@@ -29,7 +29,6 @@
 <div class="container" data-toggle="modal" data-target="#myModal">
 
    <%# if logged_in? %> 
-
 
 <% if @mood.searchYelp(current_user).businesses.length > 0 %>
   <p class="intro">You chose <em><%= @mood.name %>. We recommend:</em> 

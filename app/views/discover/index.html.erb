@@ -1,11 +1,11 @@
 <!-- style to create dynamic background images -->
 <style type="text/css">
 .home {
-	background-image: url(<%= @daypart.photo %>);
-	background-repeat: no-repeat;
+	/*background-image: url(<%= @daypart.photo %>);*/
+	/*background-repeat: no-repeat;
 	background-size: cover;
 	height: 100%;
-	width: 100%;
+	width: 100%;*/
 	background-color: #000;
 }
 
@@ -17,8 +17,8 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	width: 100%;
-	height: 100%;
-
+	height: 900px;
+	top: -6px;
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
@@ -68,8 +68,9 @@
 			<%if Mood.where(days: @day, daypart_ids: @daypart.name).length > 0 %>
 				<% Mood.where(days: @day, daypart_ids: @daypart.name).shuffle.first(6).each do |mood| %>
 					<%= link_to(discover_path(mood)) do %>
-					<div class="mood-choice col-md-3"> 
-						<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
+					<div class="mood-choice col-md-3">
+					 	<!-- uncomment this -->
+						<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>">ICON</div>
 						<div class="mood-title"><%= mood.name %></div>
 						<div class="mood-description"><%= mood.description %></div>
 					</div>
