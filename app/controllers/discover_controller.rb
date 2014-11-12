@@ -1,4 +1,5 @@
 class DiscoverController < ApplicationController
+	
 	def index
 		@time = Time.now
 		@pretty_time = Time.now.strftime('%l:%M%P')

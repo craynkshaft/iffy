@@ -11,7 +11,6 @@
   content: "";
   position: fixed;
   z-index: -1;
-  
   background-image: url(<%= @mood.photo %>);
   background-size: cover;
   width: 100%;
@@ -33,7 +32,7 @@
 <div class="container" data-toggle="modal" data-target="#myModal">
 
    <%# if logged_in? %> 
-<% if 0 > 0 %>
+<% if @mood.searchYelp(current_user).businesses.length > 0 %>
   <p class="intro" id="one">You chose <span class="red"><em><%= @mood.name %></em></span> 
     <!--is <%#= current_user.radius === 16000 ? "driving " : current_user.radius === 8000 ? "biking " : "" %>distance</p>-->
   <p class="intro" id="two">We recommend:</p>
@@ -72,7 +71,7 @@
   </div>
   <%#= current_user.radius %>
 <% else %>
-  <p class="no-results expand">Dang it! No local matches for <%= @mood.name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %> to get more results.</p>
+  <p class="no-results expand">Dang it! No local matches for <%= @mood.name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %>to get more results.</p>
   <script>$(".footer").show();</script>
 <% end %>
 
