@@ -3485,6 +3485,16 @@ body {
   background-color: rgba(0,50,100,1);
   border: 2px solid rgba(0,50,100,1);
 }
+.moodicon{
+  color:rgba(0,75,150,1);
+}
+.mood-choice:hover .moodicon{
+  color:white;
+}
+.mood-choice:hover .mood-title{
+  font-style: oblique;
+  color:silver;
+}
 
 .no-underline > a {
 	text-decoration: none;

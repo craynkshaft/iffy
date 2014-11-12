@@ -79,7 +79,7 @@
 					<script>numberOfMoods+=1;</script>
 					<%= link_to(discover_path(mood)) do %>
 					<div class="mood-choice col-md-3" id="mood_<%=index+1%>">
-						<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
+						<div class="moodicon <%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
 						<div class="mood-title"><%= mood.name %></div>
 						<div class="mood-description"><%= mood.description %></div>
 					</div>
