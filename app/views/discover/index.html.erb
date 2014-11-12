@@ -43,13 +43,15 @@
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
-		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %>. What are you in the mood for?</h2>
+		
 
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
 		<% if current_user.latitude != 0 %>
+		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %>. What are you in the mood for?</h2>
 		<!-- if your home city and detected city are different, pop up a modal -->
 			<% if request.location.city != current_user.zip.to_s.to_region(:city => true) %>
+				<%binding.pry%>
 				<!-- begin modal -->
 				<div class="modal fade" id="traveling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -85,7 +87,7 @@
 					<% end %>
 				<% end %>
 			<% else %>
-				<p class="welcome">Standby, we're plotting some great new choices to fill your day with awesome.</p>
+				<p class="welcome expand">Standby, we're plotting some great new choices to fill your day with awesome.</p>
 			<!-- end mood length check -->
 			<% end %>
 		</div>
@@ -120,6 +122,7 @@
 		$('#moodcontainer').css('padding-bottom', docHeight).css('padding-top', 50);
 		$(animateMood);
 	});
+	$('.expand').css('padding-bottom', $(window).height()/4).css('padding-top', $(window).height()/4);
 	
 	
 	

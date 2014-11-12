@@ -27,8 +27,8 @@ class Mood
       sort: self.sort,
       term: self.keywords.join('+')
     }
-    
-    if current_user.latitude > 0 && current_user.traveling
+
+    if current_user.latitude > 0 && current_user.travel
     # pop up modal
     # Iffy noticed you're not searching from cityname. Would you like to search in newcityname instead? You could also update your location in your account profile
       coordinates = {
