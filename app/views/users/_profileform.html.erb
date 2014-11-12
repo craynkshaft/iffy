@@ -20,10 +20,10 @@
 			<%= f.label :zip %><%=@user.errors.messages[:zip].join(" AND ") %>
 			<%= f.text_field :zip, class: 'form-control bottom-buffer', maxlength: 5 %>
 		</div>
-		<div class = "form-group">
-			<%= f.label :bio %>
-			<%= f.text_area :bio, class: 'form-control bottom-buffer', maxlength: 140 %>
-		</div>
+		<!-- <div class = "form-group">
+			<%#= f.label :bio %>
+			<%#= f.text_area :bio, class: 'form-control bottom-buffer', maxlength: 140 %>
+		</div> -->
 		<div class = "form-group">
 			<%= f.label :radius %>
 			<%= f.select :radius, [['I want to bike there','8000'],["I'll take a car if I need to",'16000']], {}, class: 'form-control' %>

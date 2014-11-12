@@ -31,7 +31,8 @@ module SessionsHelper
 
 	# If not already set, retrieve user from MongoDB
 	def current_user
-		if logged_in?
+		# mobile errors here
+		if logged_in? && cookies[:logged_in_id] != nil
 			@current_user ||= User.find(cookies[:logged_in_id])
 		else
 			nil

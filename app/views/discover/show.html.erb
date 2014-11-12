@@ -76,8 +76,8 @@
 <% end %>
 
 <script>
-    $("#one").show().addClass("animated fadeInLeft").delay(1000).queue(function(next){
-      $("#two").show().addClass("animated fadeInLeft").delay(2000).queue(function(next){
+    $("#one").css('display', 'inline-block').addClass("animated fadeInLeft").delay(1000).queue(function(next){
+      $("#two").css('display', 'inline-block').addClass("animated fadeInLeft").delay(2000).queue(function(next){
         $("#three").show().addClass("animated fadeIn");
         $(".footer").show();
       });
