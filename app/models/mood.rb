@@ -19,7 +19,7 @@ class Mood
   has_and_belongs_to_many :places
 
   def searchYelp(current_user)
-
+    
     params = {
       category_filter: self.category.path,
       # limit: 1,
@@ -27,7 +27,7 @@ class Mood
       sort: self.sort,
       term: self.keywords.join('+')
     }
-
+    
     if current_user.latitude > 0 && current_user.traveling
     # pop up modal
     # Iffy noticed you're not searching from cityname. Would you like to search in newcityname instead? You could also update your location in your account profile
@@ -42,7 +42,9 @@ class Mood
       }
     end
       # current_user.places << @mood.searchYelp(current_user).businesses[0].id
+      
     @yelp_results ||= Yelp.client.search_by_coordinates(coordinates, params)
+    
 
   end
 end

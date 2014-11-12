@@ -25,6 +25,9 @@
 	-ms-filter: blur(5px);
 	filter: blur(5px);
 }
+.mood-choice{
+	opacity:0;
+}
 </style>
 
 <!-- script for modal if traveling location is detected -->
@@ -32,11 +35,12 @@
     $(window).load(function(){
         $('#traveling').modal('show');
     });
+    var numberOfMoods = 0;
 </script>
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
-		<h2>It's <%= @day %> <%= @daypart.name %> in <%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %>. What are you in the mood for?</h2>
+		<h2 class="animated fadeIn">It's <%= @day %> <%= @daypart.name %> in <%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %>. What are you in the mood for?</h2>
 
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
@@ -66,11 +70,12 @@
 		<div class="container center no-underline">
 			<!-- if there are moods to display, display them -->
 			<%if Mood.where(days: @day, daypart_ids: @daypart.name).length > 0 %>
-				<% Mood.where(days: @day, daypart_ids: @daypart.name).shuffle.first(6).each do |mood| %>
+				<% Mood.where(days: @day, daypart_ids: @daypart.name).shuffle.first(6).each_with_index do |mood, index| %>
+					<script>numberOfMoods+=1;</script>
 					<%= link_to(discover_path(mood)) do %>
-					<div class="mood-choice col-md-3">
+					<div class="mood-choice col-md-3" id="mood_<%=index+1%>">
 					 	<!-- uncomment this -->
-						<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>">ICON</div>
+						<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
 						<div class="mood-title"><%= mood.name %></div>
 						<div class="mood-description"><%= mood.description %></div>
 					</div>
@@ -88,3 +93,22 @@
 <% end %>
 </div>
 <!-- deleted an orphaned closing </div> here. might cause problems -->
+
+<script>
+	var counter = 1;
+	// $('#mood_'+counter).animate({opacity: 1}, 5000, function(){});
+
+	// fade in moods one by one
+	function animateMood(){
+		setInterval(function(){
+			if(counter<=numberOfMoods){
+				$('#mood_'+counter).animate({opacity: 1});
+				counter++;
+			}
+		}, 1000);
+	}
+
+	$(animateMood);
+	
+	
+</script>
