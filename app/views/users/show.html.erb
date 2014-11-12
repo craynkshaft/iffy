@@ -1,17 +1,28 @@
 <div id="profile" class="container">
 	<div class="row">
+		<!-- "left" side of edit profile -->
 		<div class="col-sm-4">
-			<img class = "avatar" src="<%= @user.gravatar(@user.email) %>?s=250">
-			<strong><p><%= @user.name %></strong>
-			<%= link_to "Edit Profile", edit_user_path(@user) if current_user.id == @user.id || current_user.access == 'admin' %><br><%= current_user.zip.to_s.to_region %></p>
-			<h3><%= @user.bio %></h3>
+			
+			<p><span id="profileusername"><%= @user.name %></span>
+			<br><span id="location"><%= current_user.zip.to_s.to_region %></span id="location">
+			<br>
+			<%= link_to "Edit Profile", edit_user_path(@user) if current_user.id == @user.id || current_user.access == 'admin' %>
+			</p>
+			<!-- <h3><%#= @user.bio %></h3> -->
+
+
 		</div>
+
+		<!-- "right" side of profile -->
 		<div class="col-sm-8 latest-moods">
-			<p><strong>Latest Moods: </strong>
+			<p><span id="latestmoodtitle">Latest Moods:</span>
 	  		<% current_user.moods.order("created_at desc").take(20).each do |mood| %>
 			<li> 
-				<%= link_to mood.name, discover_path(mood) %> - <%= mood.description %> 
+				<div class="<%= mood.category.icon ? (mood.category.icon + ' fa-2x profileicon') : ""%>"></div>
+				<%= link_to mood.name, discover_path(mood)%>
+				<p class="profilemooddescription"><%= mood.description %></p>
 			</li>
+			<br>
 			<% end %>
 		  	</p>
 		</div>

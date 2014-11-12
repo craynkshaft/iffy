@@ -38,7 +38,7 @@ moods = Mood.create([
     name: "A New Do for You",
     description: "It's time for a cut. And this place takes the cake.",
     photo: "http://photos.posh24.com/p/986994/z/music_video/willow_smith_crazy_hair.jpg",
-    category: "beautysvc",
+    category_id: "beautysvc",
     sort: 2,
     keywords: [
         "barber"
@@ -58,7 +58,7 @@ moods = Mood.create([
     name: "Healthy Snack after a Run",
     description: "This is a faaaantastic description",
     photo: "http://2.bp.blogspot.com/-WfJ7zv-JNdw/Uj9gRYJ6ejI/AAAAAAAACk8/FkE5bfjpH2g/s1600/Image+5.jpg",
-    category: "restaurants",
+    category_id: "restaurants",
     sort: 2,
     keywords: [
         "healthy",
@@ -79,7 +79,7 @@ moods = Mood.create([
     name: "Testing New Timestamp",
     description: "Well, well, well",
     photo: "",
-    category: "food",
+    category_id: "food",
     sort: 2,
     keywords: [
         "cherry"
@@ -92,7 +92,7 @@ moods = Mood.create([
     name: "Shaken...not Stirred",
     description: "As the evening winds down, so should you. Lets retire to a dark corner and sip a martini fit for 007 himself.",
     photo: "http://iqtell.com/wp-content/uploads/2013/05/James-Bond.jpg",
-    category: "bars",
+    category_id: "bars",
     sort: 0,
     keywords: [
         "martini"
@@ -114,7 +114,7 @@ moods = Mood.create([
     name: "Some delicious delivery",
     description: "Yum and yum. Chinese",
     photo: "http://www.handcraftedbymartin.com/blog/wp-content/uploads/2012/05/Chinese-food-delivery-man-leaving-restaurant-with-delivery.-.jpg",
-    category: "chinese",
+    category_id: "chinese",
     sort: 2,
     daypart_ids: [
         "early evening",
@@ -133,7 +133,7 @@ moods = Mood.create([
     name: "Studying in Peace and Quiet",
     description: "Hit the books in a quiet place. Yes please.",
     photo: "http://1.bp.blogspot.com/-LHQ-zVTucIU/T7qFEgKWoWI/AAAAAAAADk0/zGp9VvHWgDE/s1600/Harper+Library+2.jpg",
-    category: "restaurants",
+    category_id: "restaurants",
     sort: 0,
     daypart_ids: [
         "late afternoon",
@@ -154,7 +154,7 @@ moods = Mood.create([
     name: "Late Night Eats",
     description: "Hungry after a long day? Well I've got good news. These places are for you.",
     photo: "http://www.richardalois.com/wp-content/uploads/2011/09/London-Late-Night-Food.jpg",
-    category: "restaurants",
+    category_id: "restaurants",
     sort: 2,
     daypart_ids: [
         "night",
@@ -176,7 +176,7 @@ moods = Mood.create([
     name: "The Best Workout in Town ",
     description: "So the daily pushups in the kitchen aren't working--here's a better option.",
     photo: "http://www.spirithealthclubs.co.uk/media/1153/Gym.jpg",
-    category: "active",
+    category_id: "active",
     sort: 2,
     daypart_ids: [
         "early morning",
@@ -199,16 +199,19 @@ moods = Mood.create([
 
 categories = Category.create([
 	{ 
+    # 1
 		name: 'Active Life',
 		path: 'active',
 		total: 0
 	},
 	{
+    # 2
 		name: 'Arts & Entertainment',
 		path: 'arts',
 		total: 0
 	},
 	{
+    # 3
 		name: 'Bars',
 		path: 'bars',
 		total: 0

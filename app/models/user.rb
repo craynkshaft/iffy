@@ -19,7 +19,7 @@ class User
   field :places, type: Array
   field :access, default: 'user'
   field :radius, type: Integer
-  field :bio
+  # field :bio
   field :latitude, type: Float, default: '0'
   field :longitude, type: Float, default: '0'
   field :traveling, type: Boolean, default: false

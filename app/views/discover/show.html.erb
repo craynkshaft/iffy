@@ -1,9 +1,9 @@
 <style type="text/css">
 	.bg {
-	width: 100%;
+	/*width: 100%;
 	background-image: url(<%= @mood.photo %>);
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: no-repeat;*/
 	background-color: #000;
 }
 
@@ -11,40 +11,45 @@
   content: "";
   position: fixed;
   z-index: -1;
-  
   background-image: url(<%= @mood.photo %>);
   background-size: cover;
   width: 100%;
-  height: 800px;
-  
+  height: 900px;
+  top: -6px;
   -webkit-filter: blur(5px);
   -moz-filter: blur(5px);
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(5px);
 }
+.footer{
+  display:none;
+}
 </style>
+
 
 <!-- not sure we need the data-target below -->
 <div class="container" data-toggle="modal" data-target="#myModal">
 
    <%# if logged_in? %> 
-
-
 <% if @mood.searchYelp(current_user).businesses.length > 0 %>
-  <p class="intro">You chose <em><%= @mood.name %>. We recommend:</em> 
+  <p class="intro" id="one">You chose <span class="red"><em><%= @mood.name %></em></span> 
     <!--is <%#= current_user.radius === 16000 ? "driving " : current_user.radius === 8000 ? "biking " : "" %>distance</p>-->
-  <div class = "row">
-  <div class="col-sm-9">
+  <p class="intro" id="two">We recommend:</p>
+  
+  <div id="three">
+    <div class = "row">
+    <div class="col-sm-9">
+    <div class="name"><%= @mood.searchYelp(current_user).businesses[0].name %></div>
+    <div class="address"><%= @mood.searchYelp(current_user).businesses[0].location.display_address[0] %> (<%= current_user.traveling ? ((@mood.searchYelp(current_user).businesses[0].distance(current_user.latitude, current_user.longitude)) * 0.00062137).round(1) : ((@mood.searchYelp(current_user).businesses[0].distance(current_user.zip.to_s.to_lat, current_user.zip.to_s.to_lon)) * 0.00062137).round(1) %> miles away)</div><br>
+    <%= image_tag @mood.searchYelp(current_user).businesses[0].rating_img_url_large %> <span class="address"><%= @mood.searchYelp(current_user).businesses[0].review_count %> reviews</span>
+    </div>
+    <div class="yelp-image col-sm-3"><img src="<%= @mood.searchYelp(current_user).businesses[0].image_url[0..-7] %>o.jpg"></div>
+    </div>
+    <div class="snippet"><%= @mood.searchYelp(current_user).businesses[0].snippet_text %></div>
+    </div>
+  </div>
 
-  <div class="name"><%= @mood.searchYelp(current_user).businesses[0].name %></div>
-  <div class="address"><%= @mood.searchYelp(current_user).businesses[0].location.display_address[0] %> (<%= current_user.traveling ? ((@mood.searchYelp(current_user).businesses[0].distance(current_user.latitude, current_user.longitude)) * 0.00062137).round(1) : ((@mood.searchYelp(current_user).businesses[0].distance(current_user.zip.to_s.to_lat, current_user.zip.to_s.to_lon)) * 0.00062137).round(1) %> miles away)</div><br>
-  <%= image_tag @mood.searchYelp(current_user).businesses[0].rating_img_url_large %> <span class="address"><%= @mood.searchYelp(current_user).businesses[0].review_count %> reviews</span>
-  </div>
-  <div class="yelp-image col-sm-3"><img src="<%= @mood.searchYelp(current_user).businesses[0].image_url[0..-7] %>o.jpg"></div>
-  </div>
-  <div class="snippet"><%= @mood.searchYelp(current_user).businesses[0].snippet_text %></div>
-  </div>
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -66,5 +71,24 @@
   </div>
   <%#= current_user.radius %>
 <% else %>
-  <p class="no-results">Dang it! No local matches for <%= @mood.name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %>to get more results.</p>
+  <p class="no-results expand">Dang it! No local matches for <%= @mood.name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %>to get more results.</p>
+  <script>$(".footer").show();</script>
 <% end %>
+
+<script>
+    $(function(){ 
+    if($('.expand').length>0){
+        $('.expand').css('padding-bottom', $(window).height()/4).css('padding-top', $(window).height()/4);
+          $(".footer").show();
+
+      }
+
+      $("#one").css('display', 'inline-block').addClass("animated fadeInLeft").delay(1000).queue(function(next){
+        $("#two").css('display', 'inline-block').addClass("animated fadeInLeft").delay(2000).queue(function(next){
+          $("#three").show().addClass("animated fadeIn");
+          $(".footer").show();
+        });
+      });
+    });
+
+</script>

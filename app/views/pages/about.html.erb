@@ -1,3 +1,32 @@
+<style>
+	#about{
+		font-size: 20px;
+		display: none;
+		font-weight: 200;
+	}
+	#logoabout{
+		font-family: 'Roboto Slab', serif;
+		font-weight: bolder;
+		font-size: 30px;
+	}
+	#normal{
+		font-size: 20px;
+		font-weight: 200;
+		font-family: helvetica;
+	}
+	#showtwo, #showthree{
+		display: none;
+	}
+</style>
 <div class="container" id="about">
-	<p>Iffy helps you find nearby things to do. Using location-aware technology, explore your neighborhood on foot, bike, or car.</p>
+	<p><span id="logoabout">Iffy <span id="normal">helps you find nearby things to do.</span></span><span id="showtwo"> Using location-aware technology,</span><span id="showthree"> explore your neighborhood on foot, bike, or car.</span></p>
 </div>
+
+<script>
+	var windowHeight = $(window).height();
+	$('#about').css('margin-top', windowHeight/4).css('margin-bottom', windowHeight/2).fadeIn().delay(1500).queue(function(next){
+			$('#showtwo').fadeIn(1500, function(){
+				$('#showthree').fadeIn(1500);
+			});
+	});
+</script>
