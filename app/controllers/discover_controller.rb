@@ -80,11 +80,7 @@ class DiscoverController < ApplicationController
 	end
 
 	def traveling
-		if params[:nearby]
-			current_user.traveling = true
-		else
-			current_user.traveling = false
-		end
+		current_user.traveling = true
 		current_user.save!
 		redirect_to root_path
 	end
