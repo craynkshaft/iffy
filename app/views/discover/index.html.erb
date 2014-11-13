@@ -56,7 +56,7 @@
 		<!-- ignore lat/lon if none detected -->
 		<% if current_user.latitude != 0 %>
 		<!-- if your home city and detected city are different, pop up a modal -->
-			<% if @city != current_user.zip.to_s.to_region(:city => true) %>
+			<% if ( @city != current_user.zip.to_s.to_region(:city => true) ) && (!current_user.traveling)%>
 				<!-- begin modal -->
 				<div class="modal fade" id="traveling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">

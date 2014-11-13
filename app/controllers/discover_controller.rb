@@ -43,6 +43,10 @@ class DiscoverController < ApplicationController
 			@city = request.location.city
 			current_user.save!
 		end
+
+		if current_user.traveling
+
+		end
 	end
 
 
