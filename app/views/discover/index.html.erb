@@ -73,9 +73,7 @@
 				      </div>
 				    </div>
 				  </div>
-				</div>
-			
-				<% current_user.setTravelingFalse %>
+				</div>			
 			<% end %>
 		<% end %>
 		<!-- display available moods -->
@@ -104,6 +102,7 @@
 <% end %>
 </div>
 <!-- deleted an orphaned closing </div> here. might cause problems -->
+<% current_user.setTravelingFalse %>
 
 <script>
 	var counter = 1;
