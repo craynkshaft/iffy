@@ -40,13 +40,13 @@
     });
     var numberOfMoods = 0;
 
- //    navigator.geolocation.getCurrentPosition(showPosition);
- //    function showPosition(position) {
-	// 	var x = position.coords.latitude;
-	// 	var y = position.coords.longitude;
-	// 	alert(x + " " + y);
-	// 	// $("body").hide();
-	// }
+    navigator.geolocation.getCurrentPosition(showPosition);
+    function showPosition(position) {
+		var x = position.coords.latitude;
+		var y = position.coords.longitude;
+		alert(x + " " + y);
+		// $("body").hide();
+	}
 </script>
 
 <% if logged_in? %>	
