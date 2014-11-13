@@ -59,8 +59,8 @@
 			<% if request.location.city != current_user.zip.to_s.to_region(:city => true) %>
 			<script>
 				console.log("one run");
-				console.log(''+<%=request.location.city%>+'');
-				console.log(''+<%=current_user.zip.to_s.to_region(:city => true)%>+'');
+				console.log(<%=request.location.city.to_json%>);
+				console.log(<%=current_user.zip.to_s.to_region(:city => true).to_json%>);
 			</script>
 				<!-- begin modal -->
 				<div class="modal fade" id="traveling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
