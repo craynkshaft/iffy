@@ -39,18 +39,26 @@
         $('#traveling').modal('show');
     });
     var numberOfMoods = 0;
+
+ //    navigator.geolocation.getCurrentPosition(showPosition);
+ //    function showPosition(position) {
+	// 	var x = position.coords.latitude;
+	// 	var y = position.coords.longitude;
+	// 	alert(x + " " + y);
+	// 	// $("body").hide();
+	// }
 </script>
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
 		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span class="blue"><%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %></span>. What are you in the <span class="blue">mood</span> for?</h2>
-
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
 		<% if current_user.latitude != 0 %>
 		
 		<!-- if your home city and detected city are different, pop up a modal -->
 			<% if request.location.city != current_user.zip.to_s.to_region(:city => true) %>
+
 				<!-- begin modal -->
 				<div class="modal fade" id="traveling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -115,9 +123,9 @@
 
 	// hide after
 	var windowHeight = $(window).height();
-	$('#hidden').css('margin-top', windowHeight/8).css('margin-bottom',windowHeight/3).fadeIn('fast').delay(3000).fadeOut(1000, function(){
+	$('#hidden').css('margin-top', windowHeight/8).fadeIn('fast', function(){
 		var docHeight = $(document).height()/2; 
-		$('#moodcontainer').css('margin-bottom', docHeight).css('margin-top', 50);
+		$('#moodcontainer').css('margin-bottom', docHeight);
 		$('.expand').fadeIn();
 		$(animateMood);
 	});
