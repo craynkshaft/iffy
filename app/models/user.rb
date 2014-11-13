@@ -76,5 +76,10 @@ class User
     self.traveling = true
     self.save!
   end
+
+  def setTravelingFalse
+    self.travleing = false
+    self.save!
+  end
 end
 
