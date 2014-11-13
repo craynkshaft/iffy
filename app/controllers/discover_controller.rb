@@ -73,19 +73,14 @@ class DiscoverController < ApplicationController
 				sort_reviewed = searchresults.sort_by do |result| result.review_count end.reverse
 				sort_rating = searchresults.sort_by do |result| result.rating end.reverse
 
+				# initialize empty array to store dual sorted results in descending order
 				top_list = []
 				(sort_reviewed & sort_rating).each do |intersect| top_list << intersect end
 				# random place from the top sorted list (top 10 or less)
 				@mood = top_list.take(10).sample
-				
-
 			else
 				@mood = false
 			end
-			# searchresults[0].rating
-			# searchresults[0].review_count
-			# @mood = searchresults[0] ? searchresults.sample : false
-		
 
 			@photo = mood.photo
 			@name = mood.name

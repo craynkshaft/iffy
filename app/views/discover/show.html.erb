@@ -43,7 +43,6 @@
       <!-- grabbing first location -->
       <!-- make it grab the first location open -->
     <div class="name"><%= @mood.name %></div>
-    <%#binding.pry%>
     <div class="address"><%= @mood.location.display_address[0] %> (<%= (@mood.distance(current_user.latitude, current_user.longitude) * 0.00062137).round(1) %> miles away)</div><br>
     <%= image_tag @mood.rating_img_url_large %> <span class="address"><%= @mood.review_count %> reviews</span>
     </div>
