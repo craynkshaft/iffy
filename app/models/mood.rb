@@ -36,10 +36,10 @@ class Mood
         longitude: current_user.longitude
       }
     # else
-    #   coordinates = {
-    #     latitude: current_user.zip.to_s.to_lat,
-    #     longitude: current_user.zip.to_s.to_lon
-    #   }
+      # coordinates = {
+      #   latitude: current_user.zip.to_s.to_lat,
+      #   longitude: current_user.zip.to_s.to_lon
+      # }
     # end
       # current_user.places << @mood.searchYelp(current_user).businesses[0].id
       

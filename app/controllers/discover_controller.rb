@@ -38,25 +38,43 @@ class DiscoverController < ApplicationController
 
 		# started trying to detect if coordinates are located
 		if logged_in?
-			current_user.latitude = request.location.latitude
-			current_user.longitude = request.location.longitude
-			if current_user.zip.to_s.to_region(:city => true) != request.location.city
+			if request.location.latitude != 0.0 && request.location.longitude != 0.0
+				current_user.saveLat request.location.latitude
+				current_user.saveLon request.location.longitude
+			else
+				# default to zip if no coords can be obtained
+				current_user.saveLat current_user.zip.to_s.to_lat
+				current_user.saveLon current_user.zip.to_s.to_lon 
+			end
+			if (current_user.zip.to_s.to_region(:city => true) != request.location.city) && request.location.city != ""
 				@current_city = request.location.city
 			else
 				@current_city = current_user.zip.to_s.to_region(:city => true)
 			end
-			current_user.save!
 		end
 	end
 
 
 	def show
 		if logged_in?
-		@mood = Mood.find(params[:id])
-		@discover = true
-		# save each mood the user looks at to their account
-		current_user.moods << @mood
-		current_user.save
+			mood = Mood.find(params[:id])
+			@discover = true
+			# save each mood the user looks at to their account
+			current_user.moods << mood
+			current_user.save
+
+			
+			searchresults = mood.searchYelp(current_user).businesses
+			@mood = searchresults[0] ? searchresults.sample : false
+			# searchresults.each do |result|
+			# 	# true if opened
+			# 	if result.is_closed
+			# 		open_arr << result
+			# 	end
+			# end	
+
+			@photo = mood.photo
+			@name = mood.name
 		else
 			flash[:error] = "Please log in to view this page"
 			redirect_to login_path

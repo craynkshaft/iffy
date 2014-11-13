@@ -81,5 +81,15 @@ class User
     self.traveling = false
     self.save!
   end
+
+  def saveLon x
+    self.longitude = x
+    self.save!
+  end
+
+  def saveLat y
+    self.latitude = y
+    self.save!
+  end
 end
 
