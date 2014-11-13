@@ -38,7 +38,6 @@ class DiscoverController < ApplicationController
 
 		# started trying to detect if coordinates are located
 		if logged_in?
-			binding.pry
 			current_user.latitude = request.location.latitude
 			current_user.longitude = request.location.longitude	
 			current_user.save
@@ -80,7 +79,6 @@ class DiscoverController < ApplicationController
 	end
 
 	def traveling
-		binding.pry
 		if params[:nearby]
 			current_user.traveling = true
 		else
