@@ -37,10 +37,14 @@ class DiscoverController < ApplicationController
 		@home = true
 
 		# started trying to detect if coordinates are located
-		if logged_in? 
+		if logged_in? && !current_user.traveling
 			current_user.latitude = request.location.latitude
 			current_user.longitude = request.location.longitude
-			@city = request.location.city
+			current_user.save!
+		elsif logged_in? && current_user.traveling
+			@ignore = true
+			current_user.latitude = request.location.latitude
+			current_user.longitude = request.location.longitude
 			current_user.save!
 		end
 	end
