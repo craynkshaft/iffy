@@ -8,23 +8,6 @@ class DiscoverController < ApplicationController
 		@day = @time.strftime('%A')
 		@abbr_day = @time.strftime('%a')
 		@moods = Mood.all
-		
-		# always set variable as false
-		@skip = false
-		@city = request.location.city
-
-		# if user selected from modal already then skip location modal, and reset as false
-		if current_user
-			if current_user.traveling == true
-				@skip = true
-				# reset after going back to home
-				current_user.traveling = false
-				current_user.save!
-			else
-				# when they haven't encountered modal
-				@city = current_user.zip.to_s.to_region(city: true)	
-			end
-		end
 
 		case @hour
 		when 5..7
@@ -53,15 +36,12 @@ class DiscoverController < ApplicationController
 
 		@home = true
 
-		# always save request lat and long to user
+		# started trying to detect if coordinates are located
 		if logged_in? 
 			current_user.latitude = request.location.latitude
 			current_user.longitude = request.location.longitude	
-			current_user.save
+			current_user.save!
 		end
-
-
-		# figure out if it was from a new location then skip
 	end
 
 
@@ -99,8 +79,12 @@ class DiscoverController < ApplicationController
 	end
 
 	def traveling
-		current_user.traveling = true
-		current_user.save
+		if params[:nearby]
+			current_user.traveling = true
+		else
+			current_user.traveling = false
+		end
+		current_user.save!
 		redirect_to root_path
 	end
 end
