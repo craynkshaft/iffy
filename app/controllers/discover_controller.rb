@@ -80,8 +80,7 @@ class DiscoverController < ApplicationController
 	end
 
 	def traveling
-		current_user.traveling = true
-		current_user.save!
+		current_user.setTravelingTrue
 		redirect_to root_path
 	end
 end
