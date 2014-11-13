@@ -55,6 +55,7 @@
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
 
+		<!-- skip modal -->
 		<!-- set false -->
 		<% if false %>
 		<!-- if your home city and detected city are different, pop up a modal -->
@@ -78,6 +79,8 @@
 				</div>			
 			<% end %>
 		<% end %>
+
+		
 		<!-- display available moods -->
 		<div class="container center no-underline" id="moodcontainer">
 			<!-- if there are moods to display, display them -->
@@ -129,7 +132,7 @@
 	var windowHeight = $(window).height();
 	$('#hidden').css('margin-top', windowHeight/8).fadeIn('fast', function(){
 		var docHeight = $(document).height()/2; 
-		$('#moodcontainer').css('margin-bottom', docHeight);
+		$('#moodcontainer').css('margin-bottom', docHeight/2);
 		$('.expand').fadeIn();
 		$(animateMood);
 	});
