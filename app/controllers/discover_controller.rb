@@ -63,27 +63,14 @@ class DiscoverController < ApplicationController
 			current_user.moods << mood
 			current_user.save
 
+			# get first 10 results returned
+			searchresults = mood.searchYelp(current_user).businesses.take(10)
 			
-			searchresults = mood.searchYelp(current_user).businesses
-			# if at least one result
-			if searchresults.length > 0
-				# get top rated and most reviewed
-
-				# results sorted increasing reviews
-				sort_reviewed = searchresults.sort_by do |result| result.review_count end.reverse
-				sort_rating = searchresults.sort_by do |result| result.rating end.reverse
-
-				# initialize empty array to store dual sorted results in descending order
-				top_list = []
-				(sort_reviewed & sort_rating).each do |intersect| top_list << intersect end
-				# random place from the top sorted list (top 10 or less)
-				@mood = top_list.take(10).sample
-			else
-				@mood = false
-			end
-
+			# serve up the business to show
 			@photo = mood.photo
 			@name = mood.name
+			# grab random business if there exists a business
+			@mood = searchresults.count > 0 ? searchresults.sample : false
 		else
 			flash[:error] = "Please log in to view this page"
 			redirect_to login_path
