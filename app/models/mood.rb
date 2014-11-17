@@ -28,19 +28,19 @@ class Mood
       term: self.keywords.join('+')
     }
 
-    if current_user.latitude > 0 && current_user.travel
+    # if current_user.latitude > 0 && current_user.traveling
     # pop up modal
     # Iffy noticed you're not searching from cityname. Would you like to search in newcityname instead? You could also update your location in your account profile
       coordinates = {
         latitude: current_user.latitude,
         longitude: current_user.longitude
       }
-    else
-      coordinates = {
-        latitude: current_user.zip.to_s.to_lat,
-        longitude: current_user.zip.to_s.to_lon
-      }
-    end
+    # else
+      # coordinates = {
+      #   latitude: current_user.zip.to_s.to_lat,
+      #   longitude: current_user.zip.to_s.to_lon
+      # }
+    # end
       # current_user.places << @mood.searchYelp(current_user).businesses[0].id
       
     @yelp_results ||= Yelp.client.search_by_coordinates(coordinates, params)

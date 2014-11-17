@@ -1,7 +1,7 @@
 <style type="text/css">
 	.bg {
 	/*width: 100%;
-	background-image: url(<%= @mood.photo %>);
+	background-image: url(<%= @photo %>);
 	background-size: cover;
 	background-repeat: no-repeat;*/
 	background-color: #000;
@@ -11,7 +11,7 @@
   content: "";
   position: fixed;
   z-index: -1;
-  background-image: url(<%= @mood.photo %>);
+  background-image: url(<%= @photo %>);
   background-size: cover;
   width: 100%;
   height: 900px;
@@ -32,21 +32,23 @@
 <div class="container" data-toggle="modal" data-target="#myModal">
 
    <%# if logged_in? %> 
-<% if @mood.searchYelp(current_user).businesses.length > 0 %>
-  <p class="intro" id="one">You chose <span class="red"><em><%= @mood.name %></em></span> 
+<% if @mood %>
+  <p class="intro" id="one">You chose <span class="red"><em><%= @name %></em></span> 
     <!--is <%#= current_user.radius === 16000 ? "driving " : current_user.radius === 8000 ? "biking " : "" %>distance</p>-->
   <p class="intro" id="two">We recommend:</p>
   
   <div id="three">
     <div class = "row">
     <div class="col-sm-9">
-    <div class="name"><%= @mood.searchYelp(current_user).businesses[0].name %></div>
-    <div class="address"><%= @mood.searchYelp(current_user).businesses[0].location.display_address[0] %> (<%= current_user.traveling ? ((@mood.searchYelp(current_user).businesses[0].distance(current_user.latitude, current_user.longitude)) * 0.00062137).round(1) : ((@mood.searchYelp(current_user).businesses[0].distance(current_user.zip.to_s.to_lat, current_user.zip.to_s.to_lon)) * 0.00062137).round(1) %> miles away)</div><br>
-    <%= image_tag @mood.searchYelp(current_user).businesses[0].rating_img_url_large %> <span class="address"><%= @mood.searchYelp(current_user).businesses[0].review_count %> reviews</span>
+      <!-- grabbing first location -->
+      <!-- make it grab the first location open -->
+    <div class="name"><%= @mood.name %></div>
+    <div class="address"><%= @mood.location.display_address[0] %> (<%= (@mood.distance(current_user.latitude, current_user.longitude) * 0.00062137).round(1) %> miles away)</div><br>
+    <%= image_tag @mood.rating_img_url_large %> <span class="address"><%= @mood.review_count %> reviews</span>
     </div>
-    <div class="yelp-image col-sm-3"><img src="<%= @mood.searchYelp(current_user).businesses[0].image_url[0..-7] %>o.jpg"></div>
+    <div class="yelp-image col-sm-3"><img src="<%= @mood.image_url[0..-7] %>o.jpg"></div>
     </div>
-    <div class="snippet"><%= @mood.searchYelp(current_user).businesses[0].snippet_text %></div>
+    <div class="snippet"><%= @mood.snippet_text %></div>
     </div>
   </div>
 
@@ -59,9 +61,9 @@
           <h4 class="modal-title" id="myModalLabel">More Options</h4>
         </div>
         <div class="modal-body">
-          <div id="share" class="form-group"><%= link_to "Text this to a friend", share_path(url: @mood.searchYelp(current_user).businesses[0].url, name: @mood.searchYelp(current_user).businesses[0].name, address: @mood.searchYelp(current_user).businesses[0].location.display_address.join(", ")), :class => "btn btn-primary form-control taller-buttons", :popup => ['new_window_name', 'height=300,width=600'] %></div>
-          <div id="yelp" class="form-group"><%= link_to image_tag('Yelp-Logo-sm.png'), @mood.searchYelp(current_user).businesses[0].url, :class => "yelp-button btn btn-danger form-control taller-buttons" %></div>
-          <div id="map" class="form-group"><%= link_to image_tag('google-maps-logo-transparent.png'), directions_path(address: @mood.searchYelp(current_user).businesses[0].location.display_address.join("+")), :class => "map-button btn btn-success form-control taller-buttons" %></div>
+          <div id="share" class="form-group"><%= link_to "Text this to a friend", share_path(url: @mood.url, name: @mood.name, address: @mood.location.display_address.join(", ")), :class => "btn btn-primary form-control taller-buttons", :popup => ['new_window_name', 'height=300,width=600'] %></div>
+          <div id="yelp" class="form-group"><%= link_to image_tag('Yelp-Logo-sm.png'), @mood.url, :class => "yelp-button btn btn-danger form-control taller-buttons" %></div>
+          <div id="map" class="form-group"><%= link_to image_tag('google-maps-logo-transparent.png'), directions_path(address: @mood.location.display_address.join("+")), :class => "map-button btn btn-success form-control taller-buttons" %></div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -71,14 +73,15 @@
   </div>
   <%#= current_user.radius %>
 <% else %>
-  <p class="no-results expand">Dang it! No local matches for <%= @mood.name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %>to get more results.</p>
+  <p class="no-results expand">Dang it! No local matches for <%= @name %>. Increase your radius in your <%= link_to "profile settings", edit_user_path(current_user) %> to get more results.</p>
   <script>$(".footer").show();</script>
 <% end %>
 
 <script>
     $(function(){ 
     if($('.expand').length>0){
-        $('.expand').css('padding-bottom', $(window).height()/4).css('padding-top', $(window).height()/4);
+        $('.expand').css('margin-bottom', $(window).height()/4).css('margin-top', $(window).height()/6);
+          $('.expand').show();
           $(".footer").show();
 
       }

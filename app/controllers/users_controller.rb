@@ -30,9 +30,10 @@ class UsersController < ApplicationController
 
   def update
   	@user = User.find(params[:id])
-		
 		if @user.update_attributes(params.require(:user).permit(:name, :email, :places, :access, :radius, :address, :zip, :bio, :latitude, :longitude, :traveling, :mood_ids => [], :places =>[] ))
-			redirect_to user_path
+			current_user.saveLat current_user.zip.to_s.to_lat.to_f
+      current_user.saveLon current_user.zip.to_s.to_lon.to_f
+      redirect_to user_path
 		else
 			render 'edit'
 		end

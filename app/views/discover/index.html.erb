@@ -40,24 +40,26 @@
     });
     var numberOfMoods = 0;
 
-    navigator.geolocation.getCurrentPosition(showPosition);
-    function showPosition(position) {
-		var x = position.coords.latitude;
-		var y = position.coords.longitude;
-		alert(x + " " + y);
-		// $("body").hide();
-	}
+ //    navigator.geolocation.getCurrentPosition(showPosition);
+ //    function showPosition(position) {
+	// 	var x = position.coords.latitude;
+	// 	var y = position.coords.longitude;
+	// 	alert(x + " " + y);
+	// 	// $("body").hide();
+	// }
 </script>
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
-		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span class="blue"><%= current_user.traveling ? (link_to request.location.city, edit_user_path(current_user)) : (link_to current_user.zip.to_s.to_region(:city => true), edit_user_path(current_user)) %></span>. What are you in the <span class="blue">mood</span> for?</h2>
+		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span class="blue"><%= link_to @current_city, edit_user_path(current_user) %></span>. What are you in the <span class="blue">mood</span> for?</h2>
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
-		<% if current_user.latitude != 0 %>
-		
+
+		<!-- skip modal -->
+		<!-- set false -->
+		<% if false %>
 		<!-- if your home city and detected city are different, pop up a modal -->
-			<% if request.location.city != current_user.zip.to_s.to_region(:city => true) %>
+			<% if ( @city != current_user.zip.to_s.to_region(:city => true) ) && (!current_user.traveling)%>
 				<!-- begin modal -->
 				<div class="modal fade" id="traveling" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -68,15 +70,17 @@
 				      </div>
 				      <div class="modal-body">
 				      	<!-- this nearby functionality doesn't work -->
-		                <div id="nearby" class="form-group"><%= link_to request.location.city, traveling_path(nearby: "1"), :class => "btn btn-primary form-control taller-buttons" %></div>
-		                <div id="home" class="form-group"><%= link_to current_user.zip.to_s.to_region(:city => true), traveling_path(false), :class => "btn btn-default form-control taller-buttons" %></div>
+		                <div id="nearby" class="form-group"><%= link_to request.location.city, traveling_path(), :class => "btn btn-primary form-control taller-buttons" %></div>
+		                <div id="home" class="form-group"><%= link_to current_user.zip.to_s.to_region(:city => true), traveling_path(), :class => "btn btn-default form-control taller-buttons" %></div>
 		                <div><p><%= link_to "Update your default location", edit_user_path(current_user) %></p></div>
 				      </div>
 				    </div>
 				  </div>
-				</div>
+				</div>			
 			<% end %>
 		<% end %>
+
+
 		<!-- display available moods -->
 		<div class="container center no-underline" id="moodcontainer">
 			<!-- if there are moods to display, display them -->
@@ -102,7 +106,11 @@
 	<!-- end 'discover' div -->
 <% end %>
 </div>
-<!-- deleted an orphaned closing </div> here. might cause problems -->
+
+<!-- default -->
+<%if current_user %>
+<% current_user.setTravelingFalse %>
+<%end%>
 
 <script>
 	var counter = 1;
@@ -124,11 +132,11 @@
 	var windowHeight = $(window).height();
 	$('#hidden').css('margin-top', windowHeight/8).fadeIn('fast', function(){
 		var docHeight = $(document).height()/2; 
-		$('#moodcontainer').css('margin-bottom', docHeight);
+		$('#moodcontainer').css('margin-bottom', docHeight/2);
 		$('.expand').fadeIn();
 		$(animateMood);
 	});
-	$('.expand').css('margin-bottom', $(window).height()/4).css('margin-top', $(window).height()/8);
+	$('.expand').css('margin-bottom', $(window).height()/8).css('margin-top', $(window).height()/8);
 	
 	
 	

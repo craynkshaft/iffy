@@ -71,5 +71,25 @@ class User
   def gravatar(user_email)
     url = Gravatar.new(user_email).image_url
   end
+
+  def setTravelingTrue
+    self.traveling = true
+    self.save!
+  end
+
+  def setTravelingFalse
+    self.traveling = false
+    self.save!
+  end
+
+  def saveLon x
+    self.longitude = x
+    self.save!
+  end
+
+  def saveLat y
+    self.latitude = y
+    self.save!
+  end
 end
 

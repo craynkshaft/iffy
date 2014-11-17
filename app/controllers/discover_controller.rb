@@ -38,21 +38,39 @@ class DiscoverController < ApplicationController
 
 		# started trying to detect if coordinates are located
 		if logged_in?
-			binding.pry
-			current_user.latitude = request.location.latitude
-			current_user.longitude = request.location.longitude	
-			current_user.save
+			if request.location.latitude != 0.0 && request.location.longitude != 0.0
+				current_user.saveLat request.location.latitude
+				current_user.saveLon request.location.longitude
+			else
+				# default to zip if no coords can be obtained
+				current_user.saveLat current_user.zip.to_s.to_lat
+				current_user.saveLon current_user.zip.to_s.to_lon 
+			end
+			if (current_user.zip.to_s.to_region(:city => true) != request.location.city) && request.location.city != ""
+				@current_city = request.location.city
+			else
+				@current_city = current_user.zip.to_s.to_region(:city => true)
+			end
 		end
 	end
 
 
 	def show
 		if logged_in?
-		@mood = Mood.find(params[:id])
-		@discover = true
-		# save each mood the user looks at to their account
-		current_user.moods << @mood
-		current_user.save
+			mood = Mood.find(params[:id])
+			@discover = true
+			# save each mood the user looks at to their account
+			current_user.moods << mood
+			current_user.save
+
+			# get first 10 results returned
+			searchresults = mood.searchYelp(current_user).businesses.take(10)
+			
+			# serve up the business to show
+			@photo = mood.photo
+			@name = mood.name
+			# grab random business if there exists a business
+			@mood = searchresults.count > 0 ? searchresults.sample : false
 		else
 			flash[:error] = "Please log in to view this page"
 			redirect_to login_path
@@ -80,13 +98,7 @@ class DiscoverController < ApplicationController
 	end
 
 	def traveling
-		binding.pry
-		if params[:nearby]
-			current_user.traveling = true
-		else
-			current_user.traveling = false
-		end
-		current_user.save
+		current_user.setTravelingTrue
 		redirect_to root_path
 	end
 end
