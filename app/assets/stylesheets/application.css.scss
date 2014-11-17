@@ -3196,10 +3196,11 @@ html, body {
 }
 
 #main {
-	margin-top: 35px;
+	/*margin-top: 35px;*/
   overflow:auto;
-  padding-bottom: 220px; /* this needs to be bigger than footer height*/
+  padding-bottom: 50px; /* this needs to be bigger than footer height*/
 }
+
 #oversizedfooter{
   height: 60px;
   margin-bottom: 0;
@@ -3283,7 +3284,7 @@ a.tall-btn.btn.btn-default.btn-lg.form-control {
   height:45px;
 }
 .container.form-wrapper.homepage{
-  margin-top:50px;
+  /*margin-top:50px;*/
 }
 
 .dayparts > label {
@@ -3315,8 +3316,8 @@ a.tall-btn.btn.btn-default.btn-lg.form-control {
 
 .welcome {
 	color: #FFF;
-	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-	font-size: 2.8em;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	font-size: 2.5em;
 	font-weight: lighter;
 	line-height: 1em;
 	text-align: center;
