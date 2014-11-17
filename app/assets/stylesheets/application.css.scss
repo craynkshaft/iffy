@@ -3378,6 +3378,7 @@ header {
 	font-weight: lighter;
 	font-family: 'Helvetica';
 }
+
 @-webkit-keyframes logoFade {
   0% {color: white;}
   100% {color: rgba(50,150,250,1);}
@@ -3387,6 +3388,7 @@ header {
   0% {color: white;}
   100% {color: rgba(50,150,250,1);}
 }
+
 #logo a:hover{
 	text-decoration: none;
 	color:rgba(50,150,250,1);
@@ -3395,6 +3397,7 @@ header {
   -o-animation:      logoFade .3s; /* Opera 12+ */
   animation:         logoFade .3s; /* IE 10+, Fx 29+ */
 }
+
 .checkboxes {
 	background: #000;
 	font-size: 30px;
