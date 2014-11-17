@@ -6,10 +6,10 @@
 		<h1 id="signin">Sign In</h1>
 		<%= form_for(:session, url: sessions_path) do |f| %>
 			<div class = "form-group">
-				<%= f.label :email %> <%= f.text_field :email, class: 'form-control' %>
+				<%= f.label :email %> <%= f.text_field :email, class: 'form-control', placeholder: 'Enter your email', :autofocus => true %>
 			</div>
 			<div class = "form-group">
-				<%= f.label :password %> <%= f.password_field :password, class: 'form-control' %>
+				<%= f.label :password %> <%= f.password_field :password, class: 'form-control', placeholder: 'Enter your password' %>
 			</div>
 			<div class = "form-group"><%= f.submit "Sign In", class: "tall-btn btn btn-primary btn-lg form-control" %></div>
 			<div class = "form-group"><%= link_to "Create New Account", signup_path, class: "tall-btn btn btn-default btn-lg form-control" %>
