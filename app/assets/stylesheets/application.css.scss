@@ -3701,20 +3701,68 @@ td {
 .inline-block{
   display: inline-block;
 }
-@-webkit-keyframes triangulate {
+@-webkit-keyframes detectone {
   0% {opacity: 0;}
-  50%{opacity: 1;}
+  25%{opacity: 1;}
+  50%{opacity: 0;}
+  75%{opacity: 0;}
   100% {opacity: 0;}
 }
 
-@keyframes triangulate {
+@keyframes detectone {
   0% {opacity: 0;}
-  50%{opacity: 1;}
+  25%{opacity: 1;}
+  50%{opacity: 0;}
+  75%{opacity: 0;}
   100% {opacity: 0;}
 }
-#detecting-location{
-  -webkit-animation: triangulate 2s infinite; /* Safari 4+ */
-  -moz-animation:    triangulate 2s infinite; /* Fx 5+ */
-  -o-animation:      triangulate 2s infinite; /* Opera 12+ */
-  animation:         triangulate 2s infinite; /* IE 10+, Fx 29+ */
+@-webkit-keyframes detecttwo {
+   0% {opacity: 0;}
+  25%{opacity: 0;}
+  50%{opacity: 1;}
+  75%{opacity: 0;}
+  100% {opacity: 0;}
 }
+
+@keyframes detecttwo {
+   0% {opacity: 0;}
+  25%{opacity: 0;}
+  50%{opacity: 1;}
+  75%{opacity: 0;}
+  100% {opacity:0;}
+}
+@-webkit-keyframes detectthree {
+  0% {opacity: 0;}
+  25%{opacity: 0;}
+  50%{opacity: 0;}
+  75%{opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes detectthree {
+  0% {opacity: 0;}
+  25%{opacity: 0;}
+  50%{opacity: 0;}
+  75%{opacity: 1;}
+  100% {opacity: 0;}
+}
+#dot1{
+  -webkit-animation: detectone 1.5s infinite; /* Safari 4+ */
+  -moz-animation:    detectone 1.5s infinite; /* Fx 5+ */
+  -o-animation:      detectone 1.5s infinite; /* Opera 12+ */
+  animation:         detectone 1.5s infinite; /* IE 10+, Fx 29+ */
+}
+#dot2{
+  -webkit-animation: detecttwo 1.5s infinite; /* Safari 4+ */
+  -moz-animation:    detecttwo 1.5s infinite; /* Fx 5+ */
+  -o-animation:      detecttwo 1.5s infinite; /* Opera 12+ */
+  animation:         detecttwo 1.5s infinite; /* IE 10+, Fx 29+ */
+}
+#dot3{
+  -webkit-animation: detectthree 1.5s infinite; /* Safari 4+ */
+  -moz-animation:    detectthree 1.5s infinite; /* Fx 5+ */
+  -o-animation:      detectthree 1.5s infinite; /* Opera 12+ */
+  animation:         detectthree 1.5s infinite; /* IE 10+, Fx 29+ */
+}
+
+
