@@ -42,29 +42,29 @@
         $('#traveling').modal('show');
     });
     var numberOfMoods = 0;
-    // $('body').remove();
-
-    navigator.geolocation.getCurrentPosition(showPosition);
-    function showPosition(position) {
-		var x = position.coords.latitude;
-		var y = position.coords.longitude;
-		
-		$.ajax({
-		  method: "POST",
-		  url: "/set_user_location",
-		  data: {latitude: x, longitude: y},
-		  dataType: "json",
-		  success: function(data){
-		  	$('.detecting-location').remove();
-		  	$('#yourcity').text(data.city);
-		  	$('#moodcontainer').css('display', 'block');
-		  	$(animateMood);
-		  }
-		});
-	}
 </script>
 
 <% if logged_in? %>	
+	<script>
+		navigator.geolocation.getCurrentPosition(showPosition);
+	    function showPosition(position) {
+			var x = position.coords.latitude;
+			var y = position.coords.longitude;
+			
+			$.ajax({
+			  method: "POST",
+			  url: "/set_user_location",
+			  data: {latitude: x, longitude: y},
+			  dataType: "json",
+			  success: function(data){
+			  	$('.detecting-location').remove();
+			  	$('#yourcity').text(data.city);
+			  	$('#moodcontainer').css('display', 'block');
+			  	$(animateMood);
+			  }
+			});
+		}
+	</script>
 	<div id="discover" class="container">
 
 		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span class="detecting-location" id="dot1">.</span><span class="detecting-location" id="dot2">.</span><span class="detecting-location" id="dot3">.</span><span id="yourcity"></span>. What are you in the mood for?</h2>
