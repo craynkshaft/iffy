@@ -3233,7 +3233,7 @@ footer {
 #recent
 {
   float: left;
-	width: 60%;
+	width: 50%;
 	font-size: 11px;
 	color: #888;
   text-align: left;
@@ -3429,7 +3429,7 @@ header {
 	/*width: 40%;*/
 	color: white;
 	margin-top: 23px;
-	margin-right: 30px;
+	margin-right: 35px;
 	display: inline-block;
 	text-align: right;
 }
@@ -3477,7 +3477,7 @@ body {
   /*text-align: center;*/
   color: #FFF;
 	border: 1px solid #FFF;
-	/*border-radius: 8px;*/
+	border-radius: 8px;
 	/*height: 220px;*/
 }
 @-webkit-keyframes colorFade {
@@ -3498,7 +3498,7 @@ body {
   border: 1px solid #FFF;
 }
 .moodicon{
-  color:rgba(0,75,150,1);
+  /*color:rgba(0,75,150,1);*/
 }
 .mood-choice:hover .moodicon{
   color:white;
@@ -3514,7 +3514,7 @@ body {
 
 .intro {
 	color: #FFF;
-	font-size: 5.5vw;
+	font-size: 30px;
 	font-weight: lighter;
 	line-height: 1em;
 	margin-top: 30px;
@@ -3524,7 +3524,7 @@ body {
 	color: #FFF;
 	font-family: 'helvetica';
 	font-weight: bold;
-	font-size: 10vw;
+	font-size: 8vw;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 	line-height: 1em;
 	margin-left: -3px;
@@ -3535,16 +3535,18 @@ body {
 }
 .snippet {
 	color: #FFF;
-	font-size: 5vw;
+	font-size: 30px;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 	line-height: 1.2em;
-	margin-top: 20px;
+	margin-top: 30px;
 	margin-bottom: 20px;
 }
 .yelp-image > img {
 	margin-top: 30px;
+  float: left;
 	display: inline-block;
 	width: 100%;
+  max-width: 200px;
 	background-position: center center;
 	background-size: cover;
 
@@ -3610,27 +3612,28 @@ td {
   font-style: oblique;
   color:silver;
 }
-#one{
-  /*background-color: rgba(250,250,250,.4);*/
-  background-color: rgba(0,0,0,.8);
 
+#one {
+  /*background-color: rgba(250,250,250,.4);*/
+  background-color: rgba(0,0,0,.3);
   padding: 1vw;
 }
-#two{
+
+#two {
   /*background-color: rgba(250,250,250,.4);*/
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.3);
 
   /*display: inline-block;*/
   padding: 1vw;
   margin-top: 0;
 }
 #three{
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.3);
   padding:30px;
   color:rgba(240,240,240,1);
 }
 #hidden{
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.5);
   padding:2vw;
   margin-bottom: 20px;
 }
@@ -3647,7 +3650,7 @@ td {
   color:rgba(50,150,250,1);
 }
 
-.fa-heart-o, .fa-gift, .fa-birthday-cake{
+/*.fa-heart-o, .fa-gift, .fa-birthday-cake{
   color:rgba(164, 0, 68, 1);
 } 
 .fa-car{
@@ -3682,7 +3685,7 @@ td {
 }
 .fa-spoon{
   color: rgba(100,0,30,1);
-}
+}*/
 
 /*hide to activate animation*/
 #one, #two, #three{
