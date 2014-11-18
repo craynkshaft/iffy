@@ -109,7 +109,7 @@
 					<%= link_to(discover_path(mood)) do %>
 					<div class="col-md-4">
 						<div class="mood-choice" id="mood_<%=index+1%>">
-							<div class="moodicon <%= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
+							<div class="moodicon <%#= mood.category.icon ? (mood.category.icon + ' fa-2x') : ""%>"></div>
 							<div class="mood-title"><%= mood.name %></div>
 							<div class="mood-description"><%= mood.description %></div>
 						</div>
