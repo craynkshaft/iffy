@@ -3343,7 +3343,7 @@ h2 {
 	color: #FFF;
 	font-family: 'helvetica';
 	font-weight: bolder;
-	font-size: 7vw;
+	font-size: 6vw;
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
 	margin: 10px 20px;
 	line-height: 1.1em;
@@ -3468,32 +3468,32 @@ body {
 
 .mood-choice {
 	/*background-color: rgba(0,0,0,0.1);*/
-  background-color: rgba(0,0,0,.8);
-
+  background-color: rgba(0,0,0,.3);
 	padding: 20px;
-	margin: 5px;
-/*	text-align: center;
-*/	color: #FFF;
-	border: 2px solid rgba(0,0,0,.8);
-	border-radius: 8px;
-	height: 220px;
+  /*width: 31%;*/
+	margin-top: 10px;
+  /*text-align: center;*/
+  color: #FFF;
+	border: 1px solid #FFF;
+	/*border-radius: 8px;*/
+	/*height: 220px;*/
 }
 @-webkit-keyframes colorFade {
-  0% {background: rgba(0,0,0,.8);}
-  100% {background: rgba(0,50,100,1);}
+  0% {background: rgba(0,0,0,.3);}
+  100% {background: rgba(0,0,0,.6);}
 }
 
 @keyframes colorFade {
-  0% {background: rgba(0,0,0,.8);}
-  100% {background: rgba(0,50,100,1);}
+  0% {background: rgba(0,0,0,.3);}
+  100% {background: rgba(0,0,0,.6);}
 }
 .mood-choice:hover {
   -webkit-animation: colorFade .3s; /* Safari 4+ */
   -moz-animation:    colorFade .3s; /* Fx 5+ */
   -o-animation:      colorFade .3s; /* Opera 12+ */
   animation:         colorFade .3s; /* IE 10+, Fx 29+ */
-  background-color: rgba(0,50,100,1);
-  border: 2px solid rgba(0,50,100,1);
+  background-color: rgba(0,0,0,.6);
+  border: 1px solid #FFF;
 }
 .moodicon{
   color:rgba(0,75,150,1);
@@ -3628,8 +3628,9 @@ td {
   color:rgba(240,240,240,1);
 }
 #hidden{
-  background-color: rgba(0,0,0,.8);
+  background-color: rgba(0,0,0,.3);
   padding:2vw;
+  margin-bottom: 20px;
 }
 .expand{
   background-color: rgba(0,0,0,.8);
