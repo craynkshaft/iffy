@@ -40,6 +40,7 @@ class DiscoverController < ApplicationController
 		if logged_in?
 			# lat/lon will equal 0.0 when on localhost
 			if request.location.latitude != 0.0 && request.location.longitude != 0.0
+			# this code was not working for Ran (in ohio or california), so he commented it out
 			# 	current_user.saveLat request.location.latitude
 			# 	current_user.saveLon request.location.longitude
 			# else

@@ -3197,8 +3197,8 @@ html, body {
 
 #main {
 	/*margin-top: 35px;*/
-  overflow:auto;
-  padding-bottom: 50px; /* this needs to be bigger than footer height*/
+  /*overflow:auto;*/
+  min-height: 100vh;
 }
 
 #oversizedfooter{
@@ -3454,6 +3454,8 @@ header {
 body {
 	position: relative;
 	top: 70px;
+  margin: 0;
+  padding: 0;
 }
 
 .mood-title {
