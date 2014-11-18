@@ -1,4 +1,5 @@
 class DiscoverController < ApplicationController
+	respond_to :html, :xml, :json
 
 	def index
 		@time = Time.now
@@ -37,21 +38,21 @@ class DiscoverController < ApplicationController
 		@home = true
 
 		# started trying to detect if coordinates are located
-		if logged_in?
-			if request.location.latitude != 0.0 && request.location.longitude != 0.0
-				current_user.saveLat request.location.latitude
-				current_user.saveLon request.location.longitude
-			else
-				# default to zip if no coords can be obtained
-				current_user.saveLat current_user.zip.to_s.to_lat
-				current_user.saveLon current_user.zip.to_s.to_lon 
-			end
-			if (current_user.zip.to_s.to_region(:city => true) != request.location.city) && request.location.city != ""
-				@current_city = request.location.city
-			else
-				@current_city = current_user.zip.to_s.to_region(:city => true)
-			end
-		end
+		# if logged_in?
+		# 	if request.location.latitude != 0.0 && request.location.longitude != 0.0
+		# 		current_user.saveLat request.location.latitude
+		# 		current_user.saveLon request.location.longitude
+		# 	else
+		# 		# default to zip if no coords can be obtained
+		# 		current_user.saveLat current_user.zip.to_s.to_lat
+		# 		current_user.saveLon current_user.zip.to_s.to_lon 
+		# 	end
+		# 	if (current_user.zip.to_s.to_region(:city => true) != request.location.city) && request.location.city != ""
+		# 		@current_city = request.location.city
+		# 	else
+		# 		@current_city = current_user.zip.to_s.to_region(:city => true)
+		# 	end
+		# end
 	end
 
 
@@ -100,5 +101,17 @@ class DiscoverController < ApplicationController
 	def traveling
 		current_user.setTravelingTrue
 		redirect_to root_path
+	end
+
+	def save_coordinates
+		lat = params[:latitude].to_f
+		lon = params[:longitude].to_f
+		current_user.saveLat lat
+		current_user.saveLon lon
+
+		query = params[:latitude] + " , " + params[:longitude]
+		city = Geocoder.search(query).first.city
+
+		render json: {city: city}
 	end
 end

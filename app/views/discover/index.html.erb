@@ -25,6 +25,9 @@
 	-ms-filter: blur(5px);
 	filter: blur(5px);
 }
+#moodcontainer{
+	display: none;
+}
 .mood-choice{
 	display:none;
 }
@@ -39,19 +42,31 @@
         $('#traveling').modal('show');
     });
     var numberOfMoods = 0;
+    // $('body').remove();
 
- //    navigator.geolocation.getCurrentPosition(showPosition);
- //    function showPosition(position) {
-	// 	var x = position.coords.latitude;
-	// 	var y = position.coords.longitude;
-	// 	alert(x + " " + y);
-	// 	// $("body").hide();
-	// }
+    navigator.geolocation.getCurrentPosition(showPosition);
+    function showPosition(position) {
+		var x = position.coords.latitude;
+		var y = position.coords.longitude;
+		
+		$.ajax({
+		  method: "POST",
+		  url: "/discover",
+		  data: {latitude: x, longitude: y},
+		  dataType: "json",
+		  success: function(data){
+		  	
+		  	$('#detecting-location').remove();
+		  	$('#yourcity').text(data.city);
+		  	$('#moodcontainer').css('display', 'block');
+		  }
+		});
+	}
 </script>
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
-		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <%= link_to @current_city, edit_user_path(current_user) %>. What are you in the mood for?</h2>
+		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span id="detecting-location">Triangulating Geolocation...</span><span id="yourcity"></span>. What are you in the mood for?</h2>
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
 

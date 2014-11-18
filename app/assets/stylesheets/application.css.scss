@@ -3694,3 +3694,20 @@ td {
 .inline-block{
   display: inline-block;
 }
+@-webkit-keyframes triangulate {
+  0% {opacity: 0;}
+  50%{opacity: 1;}
+  100% {opacity: 0;}
+}
+
+@keyframes triangulate {
+  0% {opacity: 0;}
+  50%{opacity: 1;}
+  100% {opacity: 0;}
+}
+#detecting-location{
+  -webkit-animation: triangulate 2s infinite; /* Safari 4+ */
+  -moz-animation:    triangulate 2s infinite; /* Fx 5+ */
+  -o-animation:      triangulate 2s infinite; /* Opera 12+ */
+  animation:         triangulate 2s infinite; /* IE 10+, Fx 29+ */
+}

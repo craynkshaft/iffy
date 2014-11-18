@@ -20,6 +20,7 @@ root 'discover#index'
   get 'discover/traveling' => 'discover#traveling', as: :traveling
   get 'discover/:id/share' => 'discover#share', as: :share
   get 'discover/:id/directions' => 'discover#directions', as: :directions
+  post 'discover' => 'discover#save_coordinates'
 
   resources :discover
 
