@@ -55,10 +55,10 @@
 		  data: {latitude: x, longitude: y},
 		  dataType: "json",
 		  success: function(data){
-		  	
 		  	$('#detecting-location').remove();
 		  	$('#yourcity').text(data.city);
 		  	$('#moodcontainer').css('display', 'block');
+		  	$(animateMood);
 		  }
 		});
 	}
@@ -155,7 +155,6 @@
 		var docHeight = $(document).height()/2; 
 		$('#moodcontainer').css('margin-bottom', docHeight/2);
 		$('.expand').fadeIn();
-		$(animateMood);
 	});
 	$('.expand').css('margin-bottom', $(window).height()/8).css('margin-top', $(window).height()/8);
 	

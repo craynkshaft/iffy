@@ -3482,6 +3482,11 @@ body {
 	border-radius: 8px;
 	/*height: 220px;*/
 }
+@media (min-width: 994px) {
+  .mood-choice{
+    height:200px;
+  }
+}
 @-webkit-keyframes colorFade {
   0% {background: rgba(0,0,0,.3);}
   100% {background: rgba(0,0,0,.6);}
