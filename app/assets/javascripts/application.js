@@ -20,5 +20,3 @@
 //= require main
 
 //= require_tree .
-
-

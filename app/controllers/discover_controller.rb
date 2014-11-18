@@ -39,10 +39,12 @@ class DiscoverController < ApplicationController
 
 		# started trying to detect if coordinates are located
 		# if logged_in?
+		# 	# lat/lon will equal 0.0 when on localhost
 		# 	if request.location.latitude != 0.0 && request.location.longitude != 0.0
-		# 		current_user.saveLat request.location.latitude
-		# 		current_user.saveLon request.location.longitude
-		# 	else
+		# 	# this code was not working for Ran (in ohio or california), so he commented it out
+		# 	# 	current_user.saveLat request.location.latitude
+		# 	# 	current_user.saveLon request.location.longitude
+		# 	# else
 		# 		# default to zip if no coords can be obtained
 		# 		current_user.saveLat current_user.zip.to_s.to_lat
 		# 		current_user.saveLon current_user.zip.to_s.to_lon 
