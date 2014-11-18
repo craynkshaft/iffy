@@ -51,7 +51,7 @@
 
 <% if logged_in? %>	
 	<div id="discover" class="container">
-		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <%= link_to @current_city, edit_user_path(current_user) %>. What are you in the mood for?</h2>
+		<h2 id="hidden">It's <%= @day %> <%= @daypart.name %> in <span class="blue"><%= link_to @current_city, edit_user_path(current_user) %></span>. What are you in the mood for?</h2>
 		<!-- modal to search nearby instead of your home location -->
 		<!-- ignore lat/lon if none detected -->
 
